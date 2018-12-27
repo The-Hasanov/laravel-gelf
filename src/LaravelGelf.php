@@ -58,7 +58,7 @@ class LaravelGelf
     {
         return new TcpTransport(
             $this->get('connection.host', '127.0.0.1'),
-            $this->get('connection.port', '127.0.0.1')
+            $this->get('connection.port', 12201)
         );
     }
 
@@ -69,7 +69,7 @@ class LaravelGelf
     {
         return new UdpTransport(
             $this->get('connection.host', '127.0.0.1'),
-            $this->get('connection.port', '12201')
+            $this->get('connection.port', 12201)
         );
     }
 
