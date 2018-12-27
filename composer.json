@@ -1,0 +1,22 @@
+{
+    "name": "chameleon/laravel-gelf",
+    "description": "Laravel Gelf",
+    "require": {
+        "php": ">=7.1.0",
+        "illuminate/support": "5.7.*",
+        "graylog2/gelf-php": "1.*",
+        "monolog/monolog": "^1.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelGelf\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelGelf\\LaravelGelfProvider"
+            ]
+        }
+    }
+}
