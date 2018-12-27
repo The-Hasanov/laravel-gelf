@@ -26,6 +26,22 @@ class LaravelGelfHandler extends AbstractProcessingHandler
         parent::__construct($level, $bubble);
     }
 
+    /**
+     * @param array $record
+     * @return bool
+     */
+    public function handle(array $record)
+    {
+        if (!$this->isHandling($record)) {
+            return false;
+        }
+
+        $record = $this->processRecord($record);
+
+        $this->write($record);
+
+        return false === $this->bubble;
+    }
 
     /**
      * Writes the record down to the log of the implementing handler
@@ -44,7 +60,9 @@ class LaravelGelfHandler extends AbstractProcessingHandler
      */
     protected function prepareMessage($record)
     {
-        $message = $this->getGelfFormatter()->format($record);
+        $message = $record instanceof Message
+            ? $record
+            : $this->getGelfFormatter()->format($record);
 
         $message->setFacility($this->laravel_gelf->get('facility'));
 
@@ -60,13 +78,11 @@ class LaravelGelfHandler extends AbstractProcessingHandler
      */
     protected function getGelfFormatter()
     {
-        $formatterClass = $this->laravel_gelf->get('formatter', GelfMessageFormatter::class);
+        $formatterClass = $this->laravel_gelf->get('formatter');
 
-        if (class_exists($formatterClass)) {
-            return new $formatterClass();
-        }
-
-        throw new \RuntimeException('Class ' . $formatterClass . ' not exists');
+        return $formatterClass
+            ? new $formatterClass()
+            : $this->getDefaultFormatter();
     }
 
     /**
