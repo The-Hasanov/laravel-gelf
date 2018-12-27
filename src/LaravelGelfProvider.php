@@ -15,10 +15,10 @@ class LaravelGelfProvider extends ServiceProvider
     {
         $this->app['log']->extend('laravel-gelf', function (Container $app, array $config) {
             $laravel_gelf = new LaravelGelf($config);
-            return new Logger(
-                $this->parseChannel($config),
+
+            return new Logger($this->parseChannel($config), [
                 new LaravelGelfHandler($laravel_gelf->level(), $laravel_gelf->bubble(), $laravel_gelf)
-            );
+            ]);
         });
     }
 }
