@@ -1,7 +1,16 @@
 {
     "name": "chameleon/laravel-gelf",
     "description": "Laravel Gelf",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
+    "keywords": [
+        "laravel",
+        "laravel-gelf",
+        "log",
+        "graylog",
+        "graylog2",
+        "gelf driver",
+        "graylog driver"
+    ],
     "require": {
         "php": ">=7.1.0",
         "illuminate/support": "5.7.*",
