@@ -69,6 +69,13 @@ class LaravelGelfHandler extends AbstractProcessingHandler
         foreach ($this->laravel_gelf->get('additional', []) as $key => $value) {
             $message->setAdditional($key, $value);
         }
+        if (empty($message->getShortMessage())) {
+            $message->setShortMessage(
+                isset($record['exception'])
+                    ? get_class($record['exception'])
+                    : 'Unknow Error'
+            );
+        }
 
         return $message;
     }
