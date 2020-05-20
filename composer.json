@@ -13,9 +13,9 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "illuminate/support": "5.7.*",
+        "illuminate/support": "^5.7|^6.0|^7.0",
         "graylog2/gelf-php": "1.*",
-        "monolog/monolog": "^1.12"
+        "monolog/monolog": "^1.12|^2.0"
     },
     "autoload": {
         "psr-4": {
