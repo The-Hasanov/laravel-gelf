@@ -6,6 +6,7 @@ use Gelf\Publisher;
 use Gelf\Transport\TcpTransport;
 use Gelf\Transport\TransportInterface;
 use Gelf\Transport\UdpTransport;
+use Illuminate\Support\Arr;
 
 class LaravelGelf
 {
@@ -97,6 +98,6 @@ class LaravelGelf
      */
     public function get($key, $default = null)
     {
-        return array_get($this->config, $key, $default);
+        return Arr::get($this->config, $key, $default);
     }
 }

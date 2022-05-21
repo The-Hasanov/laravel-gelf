@@ -40,13 +40,13 @@ class LaravelGelfHandler extends AbstractProcessingHandler
 
         $this->write($record);
 
-        return false === $this->bubble;
+        return $this->bubble === false;
     }
 
     /**
      * Writes the record down to the log of the implementing handler
      *
-     * @param  array $record
+     * @param array $record
      * @return void
      */
     protected function write(array $record)
